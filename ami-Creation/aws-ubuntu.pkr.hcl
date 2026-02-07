@@ -23,8 +23,8 @@ source "amazon-ebs" "ubuntu" {
   ssh_username = var.ssh_username
 }
 
-#build {
-  #sources = [
+build {
+  sources = [
     "source.amazon-ebs.ubuntu"
   ]
 
