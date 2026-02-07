@@ -24,14 +24,26 @@ source "amazon-ebs" "ubuntu" {
 }
 
 build {
-  name    = "learn-packer"
-  sources = ["source.amazon-ebs.ubuntu"]
+  sources = [
+    "source.amazon-ebs.ubuntu"
+  ]
 
-provisioner "shell" {
+  provisioner "shell" {
     inline = [
       "echo Installing Updates",
-      "sudo apt-get update -y",
-      "sudo apt-get install -y nginx"
+      "sudo apt-get update",
+      "sudo apt-get upgrade -y"
     ]
   }
+
+  provisioner "file" {
+    source      = "assets"
+    destination = "/tmp/"
   }
+
+   provisioner "shell" {
+    inline = [
+      "sudo sh /tmp/assets/setup-web.sh",
+    ]
+  }
+}
