@@ -23,8 +23,8 @@ source "amazon-ebs" "ubuntu" {
   ssh_username = var.ssh_username
 }
 
-build {
-  sources = [
+#build {
+  #sources = [
     "source.amazon-ebs.ubuntu"
   ]
 
@@ -33,17 +33,9 @@ build {
       "echo Installing Updates",
       "sudo apt-get update",
       "sudo apt-get upgrade -y"
-    ]
+]
   }
 
-  provisioner "file" {
-    source      = "assets"
-    destination = "/tmp/"
-  }
+  post-processor "manifest" {}
 
-   provisioner "shell" {
-    inline = [
-      "sudo sh /tmp/assets/setup-web.sh",
-    ]
-  }
 }
