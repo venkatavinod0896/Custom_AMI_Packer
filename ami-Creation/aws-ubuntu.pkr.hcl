@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     amazon = {
-      version = ">= 1.2.6"
+      version = ">= 1.2.8"
       source  = "github.com/hashicorp/amazon"
     }
   }
@@ -18,7 +18,7 @@ source "amazon-ebs" "ubuntu" {
       virtualization-type = "hvm"
     }
     most_recent = true
-    owners      = ["527769887303"]
+    owners      = ["979382823631"]
   }
   ssh_username = var.ssh_username
 }
